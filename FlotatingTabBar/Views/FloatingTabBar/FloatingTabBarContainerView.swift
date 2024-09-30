@@ -1,5 +1,5 @@
 //
-//  FlotatingTabBarApp.swift
+//  FloatingTabBarContainerView.swift
 //  FlotatingTabBar
 //
 //  Created by Jose Carrillo on 9/30/24.
@@ -23,13 +23,31 @@
 
 import SwiftUI
 
-@main
-struct FlotatingTabBarApp: App {
+struct FloatingTabBarContainerView<Content:View>: View {
     
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+    @Binding var selection: TabBarItem
+    let content: Content
+    @State private var tabs: [TabBarItem] = []
+    
+    init(selection: Binding<TabBarItem>, @ViewBuilder content: () -> Content) {
+        self._selection = selection
+        self.content = content()
     }
     
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            content
+                .ignoresSafeArea()
+            
+            FloatingTabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+            
+        }
+        .onPreferenceChange(TabBarItemsPreferenceKey.self, perform: { value in
+            self.tabs = value
+        })
+    }
+}
+
+#Preview {
+//    FloatingTabBarContainerView()
 }

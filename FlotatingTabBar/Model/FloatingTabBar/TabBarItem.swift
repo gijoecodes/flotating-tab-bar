@@ -1,5 +1,5 @@
 //
-//  FlotatingTabBarApp.swift
+//  TabBarItem.swift
 //  FlotatingTabBar
 //
 //  Created by Jose Carrillo on 9/30/24.
@@ -21,15 +21,40 @@
 //  Copyright © 2024 Jose. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 
-@main
-struct FlotatingTabBarApp: App {
+enum TabBarItem: Hashable {
     
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+    case news, favorites, home, chats, profile
+    
+    var iconName: String {
+        switch self {
+        case .news:
+            return "newspaper"
+        case .favorites :
+            return "star"
+        case .home:
+            return "house"
+        case .chats:
+            return "bubble.left.and.bubble.right"
+        case .profile:
+            return "person.fill"
         }
     }
-    
+
+    var title: String {
+        switch self {
+        case .news:
+            return "News"
+        case .favorites:
+            return "Favorites"
+        case .home:
+            return "Home"
+        case .profile:
+            return "My Profile"
+        case .chats:
+            return "Chats"
+        }
+    }
 }
+

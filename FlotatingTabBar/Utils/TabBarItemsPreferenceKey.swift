@@ -1,5 +1,5 @@
 //
-//  FlotatingTabBarApp.swift
+//  TabBarItemsPreferenceKey.swift
 //  FlotatingTabBar
 //
 //  Created by Jose Carrillo on 9/30/24.
@@ -21,15 +21,15 @@
 //  Copyright © 2024 Jose. All rights reserved.
 //
 
+
+import Foundation
 import SwiftUI
 
-@main
-struct FlotatingTabBarApp: App {
+struct TabBarItemsPreferenceKey: PreferenceKey {
     
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+    static var defaultValue: [TabBarItem] = []
+    
+    static func reduce(value: inout [TabBarItem], nextValue: () -> [TabBarItem]) {
+        value += nextValue()
     }
-    
 }

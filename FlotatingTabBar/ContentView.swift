@@ -24,14 +24,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var selectedTab: TabBarItem = .news
+    @State private var popSignUpSheetView: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        FloatingTabBarContainerView(selection: $selectedTab) {
+            Color.red
+                .tabBarItem(tab: .news, selection: $selectedTab)
+            
+            Color.blue
+                .tabBarItem(tab: .favorites, selection: $selectedTab)
+            
+            Color.green
+                .tabBarItem(tab: .home, selection: $selectedTab)
+            
+            Color.yellow
+                .tabBarItem(tab: .chats, selection: $selectedTab)
+            
+            Color.purple
+                .tabBarItem(tab: .profile, selection: $selectedTab)
+            
         }
-        .padding()
     }
 }
 

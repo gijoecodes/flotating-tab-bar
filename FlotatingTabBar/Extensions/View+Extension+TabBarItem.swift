@@ -1,5 +1,5 @@
 //
-//  FlotatingTabBarApp.swift
+//  View+Extension+TabBarItem.swift
 //  FlotatingTabBar
 //
 //  Created by Jose Carrillo on 9/30/24.
@@ -21,15 +21,14 @@
 //  Copyright © 2024 Jose. All rights reserved.
 //
 
+
+import Foundation
 import SwiftUI
 
-@main
-struct FlotatingTabBarApp: App {
+extension View {
     
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+    func tabBarItem(tab: TabBarItem, selection: Binding<TabBarItem>) -> some View {
+        self.modifier(TabBarItemViewModifier(tab: tab, selection: selection))
     }
     
 }
